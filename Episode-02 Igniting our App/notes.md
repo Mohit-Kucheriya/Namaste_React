@@ -114,3 +114,4 @@
     ```json
     "browserlist": ["last 2 versions"]
     ```
+

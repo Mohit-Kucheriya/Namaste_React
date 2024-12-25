@@ -153,3 +153,4 @@ The `dist` stands for distributable. The dist folder contains the minimized vers
 ## Q: What is `browserlists`?
 
 A: Browserlists is a tool that helps us to specify the browsers that our code should support. It helps us to create a bundle that can be used by older browsers.
+
