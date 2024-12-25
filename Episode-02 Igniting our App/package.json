@@ -1,0 +1,27 @@
+{
+  "name": "episode-02-igniting-our-app",
+  "version": "1.0.0",
+  "description": "This the Episode-02 Igniting our App",
+  "main": "app.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mohit-Kucheriya/Namaste_React.git"
+  },
+  "author": "Mohit Kucheriya",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mohit-Kucheriya/Namaste_React/issues"
+  },
+  "homepage": "https://github.com/Mohit-Kucheriya/Namaste_React#readme",
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "parcel": "^2.13.3",
+    "process": "^0.11.10"
+  }
+}
