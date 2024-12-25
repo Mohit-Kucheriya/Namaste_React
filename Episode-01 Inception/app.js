@@ -23,3 +23,4 @@ const parent = React.createElement("div", { id: "parent" }, [
 
 const root3 = ReactDOM.createRoot(document.getElementById("root3"));
 root3.render(parent);
+

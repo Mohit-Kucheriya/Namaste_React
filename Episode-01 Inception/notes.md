@@ -114,3 +114,4 @@ const parent = React.createElement("div", { id: "parent" }, [
 ```
 
 > **NOTE**: If there is anything inside the root, the `render()` function will replace it. When we call `root.render()`, the element inside the root initially will be replaced with the new element.
+
