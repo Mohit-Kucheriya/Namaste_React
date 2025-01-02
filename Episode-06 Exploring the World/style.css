@@ -12,10 +12,11 @@ body {
 }
 
 .header {
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0vh 1.5vw;
+  padding: 1vh 1.5vw;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
@@ -26,7 +27,8 @@ body {
 .nav-items ul {
   display: flex;
   list-style: none;
-  gap: 2.5vw;
+  align-items: center;
+  gap: 3vw;
 }
 
 .nav-items ul li {
@@ -93,6 +95,7 @@ body {
   color: rgba(0, 0, 0, 0.4);
   font-size: 1.2vw;
   font-weight: 600;
+  cursor: pointer;
 }
 
 .restaurant-container {
@@ -101,7 +104,7 @@ body {
   flex-wrap: wrap;
   margin-top: 1.5vw;
   gap: 4vh;
-  justify-content: space-between;
+  justify-content: center;
   padding: 2vh 0;
 }
 
@@ -148,4 +151,17 @@ body {
   font-size: 1vw;
   color: rgba(0, 0, 0, 0.9);
   font-weight: 400;
+}
+
+.btn-header {
+  padding: 1vh 1.5vw;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.1);
+  outline: none;
+  font-size: 1vw;
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.5);
+  border: none;
+  font-family: Poppins, sans-serif;
+  width: 100px;
 }

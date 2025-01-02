@@ -1,9 +1,12 @@
 import RestaurantCard from "./RestaurantCard";
 import RestaurantList from "../utils/newMockData";
 import { useEffect, useState } from "react";
+import Shimmer from "./Shimmer";
 
 const Body = () => {
     const [restaurantList, setRestaurantList] = useState([]);
+
+    const [searchText, setSearchText] = useState("");
 
     useEffect(() => {
         fetchData();
@@ -11,7 +14,7 @@ const Body = () => {
 
     const fetchData = async () => {
         const data = await fetch(
-            "https://www.swiggy.com/dapi/restaurants/list/v5?lat=20.9886078&lng=75.5611485&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+            "https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.5204303&lng=73.8567437&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
         );
         const json = await data.json();
         console.log(json);
@@ -20,12 +23,14 @@ const Body = () => {
         );
     };
 
-    return (
+    return restaurantList.length === 0 ? <div>Loading...</div> : (
         <div className="body">
             <div className="search-container">
                 <div className="search-bar">
-                    <input type="text" placeholder="Search for restaurants and food" />
-                    <i className="ri-search-line"></i>
+                    <input type="text" placeholder="Search for restaurants and food" value={searchText} onChange={(e) => setSearchText(e.target.value)} />
+                    <i onClick={() => {
+                        setRestaurantList(restaurantList.filter(res => res.info.name.includes(searchText)))
+                    }} className="ri-search-line"></i>
                 </div>
                 <button
                     onClick={() => {
