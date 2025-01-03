@@ -1,11 +1,15 @@
 import RestaurantCard from "./RestaurantCard";
-import RestaurantList from "../utils/newMockData";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 
 const Body = () => {
+    // originalList for search or filters.
     const [restaurantList, setRestaurantList] = useState([]);
 
+    // filter restaurant list based on search text or top rated
+    const [filterRestaurant, setFilterRestaurant] = useState([]);
+
+    // search text 
     const [searchText, setSearchText] = useState("");
 
     useEffect(() => {
@@ -14,51 +18,75 @@ const Body = () => {
 
     const fetchData = async () => {
         const data = await fetch(
-            "https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.5204303&lng=73.8567437&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+            "https://www.swiggy.com/dapi/restaurants/list/v5?lat=21.0076578&lng=75.5626039&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
         );
         const json = await data.json();
-        console.log(json);
+
+        // This is the original list of restaurants which i.e. restaurantList is always the original source of truth.
         setRestaurantList(
-            json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+            json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+        );
+
+        // filterRestaurant is dynamically updated to reflect the current view.
+        setFilterRestaurant(
+            json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
         );
     };
 
-    return restaurantList.length === 0 ? <div>Loading...</div> : (
+    return restaurantList.length === 0 ? (
+        <div>Loading...</div>
+    ) : (
         <div className="body">
             <div className="search-container">
                 <div className="search-bar">
-                    <input type="text" placeholder="Search for restaurants and food" value={searchText} onChange={(e) => setSearchText(e.target.value)} />
-                    <i onClick={() => {
-                        setRestaurantList(restaurantList.filter(res => res.info.name.includes(searchText)))
-                    }} className="ri-search-line"></i>
+                    <input
+                        type="text"
+                        placeholder="Search for restaurants and food"
+                        value={searchText}
+                        onChange={(e) => setSearchText(e.target.value)}
+                    />
+
+                    {/* Search icon */}
+                    <i
+                        onClick={() => {
+                            setFilterRestaurant(
+                                restaurantList.filter((res) =>
+                                    res.info.name
+                                        .toLowerCase()
+                                        .includes(searchText.toLocaleLowerCase())
+                                )
+                            );
+                            setSearchText("")
+                        }}
+                        className="ri-search-line"
+                    ></i>
                 </div>
+
+                {/* Top Rated Restaurants button */}
                 <button
                     onClick={() => {
                         const topRestaurants = restaurantList.filter(
-                            (res) => res.info.avgRating > 4
+                            (res) => res.info.avgRating > 4.5
                         );
-                        setRestaurantList(topRestaurants);
+                        setFilterRestaurant(topRestaurants);
                     }}
                 >
                     Top Restaurants
                 </button>
+
+                {/* Reset button */}
+                <button
+                    onClick={() => {
+                        setFilterRestaurant(restaurantList);
+                        setSearchText("");
+                    }}
+                >
+                    Reset
+                </button>
             </div>
 
             <div className="restaurant-container">
-                {/* <RestaurantCard resName="Thikana" resCategory="Indian, Chinese" />
-                <RestaurantCard resName="Desi Dhaba" resCategory="Punjabi" />
-                <RestaurantCard
-                    resName="Mirchi Masala"
-                    resCategory="South Indian, North Indian"
-                />
-                <RestaurantCard
-                    resName="Sandeep Foods"
-                    resCategory="Indian, Chinese, South Indian"
-                />
-                <RestaurantCard resName="Pizza Hut" resCategory="Italian" /> */}
-                {/* {[1, 2, 3, 4, 5].map(res => <RestaurantCard ResObj={ResObj} />)} */}
-
-                {restaurantList.map((res, i) => (
+                {filterRestaurant.map((res, i) => (
                     <RestaurantCard ResData={res} key={i} />
                 ))}
             </div>
