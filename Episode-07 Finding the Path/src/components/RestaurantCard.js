@@ -1,8 +1,6 @@
 import { RES_CARD_URL } from "../utils/constants"
 const RestaurantCard = ({ ResData }) => {
-    // console.log(ResData);
-    const { cloudinaryImageId, name, avgRating, cuisines, locality } = ResData?.info;
-
+    const { cloudinaryImageId, name, avgRating, cuisines, locality, costForTwo } = ResData?.info;
 
     return (
         <div className="restaurant-card">
@@ -14,6 +12,7 @@ const RestaurantCard = ({ ResData }) => {
             </div>
             <div className="restaurant-card-title">
                 <h3>{name}</h3>
+                <h4>{costForTwo}</h4>
                 <p className="star-rating">{avgRating} Star</p>
                 <p>{cuisines.join(", ")}</p>
                 <p>{locality}</p>

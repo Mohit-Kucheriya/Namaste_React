@@ -2,6 +2,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  text-decoration: none;
+  color: #444;
 }
 
 html,
@@ -9,6 +11,10 @@ body {
   width: 100%;
   height: 100%;
   font-family: Poppins, sans-serif;
+}
+
+body::-webkit-scrollbar{
+  display: none;
 }
 
 .header {
@@ -114,11 +120,12 @@ body {
   border-radius: 10px;
   padding: 1vw;
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
+  transition: scale 0.2s ease-in;
 }
 
 .restaurant-card:hover {
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); */
+  scale: 1.05;
 }
 
 .restaurant-card-image {
@@ -132,12 +139,19 @@ body {
 .restaurant-card-image img {
   width: 100%;
   object-fit: cover;
+  aspect-ratio: 16/9;
 }
 
 .restaurant-card-title h3 {
-  font-size: 1.2vw;
+  font-size: 1.05vw;
   font-weight: 600;
   margin-bottom: 1vh;
+}
+
+.restaurant-card-title h4 {
+  font-size: 0.9vw;
+  font-weight: 600;
+  margin-bottom: 0.5vh;
 }
 
 .restaurant-card-title p {
