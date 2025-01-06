@@ -22,9 +22,11 @@ const RestaurantMenu = () => {
     };
 
     if (resMenu === null) return <div>Loading</div>;
+    // to get the restaurant name, costForTwoMessage, cuisines and itemCards
     const { id, name, costForTwoMessage, cuisines } =
         resMenu?.cards[2]?.card?.card?.info;
 
+    // to get the itemCards i.e. MenuItem
     const { itemCards } =
         resMenu?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2].card?.card;
 

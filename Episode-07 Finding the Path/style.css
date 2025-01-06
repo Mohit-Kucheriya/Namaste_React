@@ -41,6 +41,8 @@ body::-webkit-scrollbar{
   font-size: 1.05vw;
   font-weight: 400;
   cursor: pointer;
+  outline: none;
+  border: none;
 }
 
 .body {
@@ -120,12 +122,12 @@ body::-webkit-scrollbar{
   border-radius: 10px;
   padding: 1vw;
   cursor: pointer;
-  transition: scale 0.2s ease-in;
+  transition: scale 0.4s ease;
 }
 
 .restaurant-card:hover {
   /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); */
-  scale: 1.05;
+  scale: 0.94;
 }
 
 .restaurant-card-image {

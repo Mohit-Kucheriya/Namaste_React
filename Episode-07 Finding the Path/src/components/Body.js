@@ -10,7 +10,7 @@ const Body = () => {
     // filter restaurant list based on search text or top rated
     const [filterRestaurant, setFilterRestaurant] = useState([]);
 
-    // search text 
+    // search text
     const [searchText, setSearchText] = useState("");
 
     useEffect(() => {
@@ -57,7 +57,7 @@ const Body = () => {
                                         .includes(searchText.toLocaleLowerCase())
                                 )
                             );
-                            setSearchText("")
+                            setSearchText("");
                         }}
                         className="ri-search-line"
                     ></i>
@@ -89,7 +89,9 @@ const Body = () => {
             <div className="restaurant-container">
                 {filterRestaurant.map((res, i) => (
                     // Passing the restaurant data to the RestaurantCard component
-                    <RestaurantCard ResData={res} key={res.info.id} />
+                    <Link to={"/restaurants/" + res.info.id} key={res.info.id}>
+                        <RestaurantCard ResData={res} />
+                    </Link>
                 ))}
             </div>
         </div>
