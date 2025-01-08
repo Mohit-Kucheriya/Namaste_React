@@ -21,7 +21,8 @@ class About extends React.Component {
                 <h3>Welcome to the About Page. This is a simple React App.</h3>
                 <p>Created by Mohit Kucheriya.</p>
 
-                <UserClass name="Mohit as Class via Props" />
+                <UserClass name="First" />
+                <UserClass name="Second" />
             </div>
         );
     }
