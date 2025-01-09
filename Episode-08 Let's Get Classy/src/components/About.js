@@ -8,7 +8,7 @@ class About extends React.Component {
         console.log("Parent Constructor");
     }
 
-    componentDidMount() {
+ componentDidMount() {
         console.log("Parent ComponentDidMount");
     }
 
@@ -22,7 +22,7 @@ class About extends React.Component {
                 <p>Created by Mohit Kucheriya.</p>
 
                 <UserClass name="First" />
-                <UserClass name="Second" />
+                {/* <UserClass name="Second" /> */}
             </div>
         );
     }

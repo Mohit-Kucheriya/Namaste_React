@@ -5,28 +5,55 @@ class UserClass extends React.Component {
         super(props);
 
         this.state = {
-            count: 0,
-            count2: 2,
+            userInfo: {
+                name: "Dummy",
+                username: "Dummy",
+                phone: 123,
+                address: {
+                    street: "Dummy",
+                    city: "Dummy",
+                    suite: "Dummy",
+                }
+
+            },
         };
 
         console.log(this.props.name + "Child Constructor");
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         console.log(this.props.name + "Child ComponentDidMount");
+
+        const data = await fetch("https://jsonplaceholder.typicode.com/users");
+        const json = await data.json();
+        console.log(json[0]);
+
+
+        this.setState({
+            userInfo: json[0],
+        });
+    }
+
+    componentDidUpdate() {
+        console.log(`componentDidUpdate was called`);
     }
 
     render() {
         // Destructuring the props
-        const { name } = this.props;
-        const { count } = this.state;
+        const { name, username, phone, address, email } = this.state.userInfo;
+        // const { count } = this.state;
 
         console.log(this.props.name + "Child Render");
 
         return (
             <div className="user-card">
-                <h1>User Class</h1>
-                <h2>Count: {count}</h2>
+                <h1>{name}</h1>
+                <h2>{username}- {email}</h2>
+                <h3>{phone}</h3>
+                <p>{address.street}</p>
+                <p>{address.city}</p>
+                <p>{address.suite}</p>
+
 
                 <button
                     className="btn-class"
