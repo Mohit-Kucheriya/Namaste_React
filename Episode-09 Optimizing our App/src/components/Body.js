@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import { BODY_DATA_URL } from "../utils/constants";
 
 const Body = () => {
     // originalList for search or filters.
@@ -19,9 +20,7 @@ const Body = () => {
     }, []);
 
     const fetchData = async () => {
-        const data = await fetch(
-            "https://www.swiggy.com/dapi/restaurants/list/v5?lat=21.0076578&lng=75.5626039&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-        );
+        const data = await fetch(BODY_DATA_URL);
         const json = await data.json();
 
         // This is the original list of restaurants which i.e. restaurantList is always the original source of truth.
@@ -34,6 +33,7 @@ const Body = () => {
             json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
         );
     };
+
 
     if (!useOnlineStatus()) return <h2>You're offline. Please connect to the internet to view the app.</h2>
 
@@ -57,7 +57,7 @@ const Body = () => {
                                 restaurantList.filter((res) =>
                                     res.info.name
                                         .toLowerCase()
-                                        .includes(searchText.toLocaleLowerCase())
+                                        .includes(searchText.toLowerCase())
                                 )
                             );
                             setSearchText("");
