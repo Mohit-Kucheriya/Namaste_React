@@ -1,4 +1,4 @@
-import React from "react";
+import React, { use, useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
@@ -7,16 +7,28 @@ import Contact from "./components/Contact";
 import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import UserContext from "./utils/UserContext";
 
 // Define App component
 const App = () => {
-    // console.log(<Body />);
+    const [userName, setUserName] = useState()
+
+    useEffect(() => {
+        const data = {
+            loggedInUser: "Mohit Kucheriya"
+        }
+        setUserName(data.loggedInUser)
+
+    }, [])
 
     return (
-        <div>
-            <Header />
-            <Outlet />
-        </div>
+        <UserContext.Provider value={{ loggedInUser: userName , setUserName}}>
+
+            <div>
+                <Header />
+                <Outlet />
+            </div>
+        </UserContext.Provider>
     );
 };
 

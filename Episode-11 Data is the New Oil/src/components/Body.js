@@ -1,10 +1,11 @@
 import RestaurantCard, { withVegetarian } from "./RestaurantCard";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import { BODY_DATA_URL } from "../utils/constants";
 import useBody from "../utils/useBody";
+import UserContext from "../utils/UserContext";
 
 const Body = () => {
     // originalList for search or filters.
@@ -45,6 +46,8 @@ const Body = () => {
         return (
             <h2>You're offline. Please connect to the internet to view the app.</h2>
         );
+
+    const { loggedInUser, setUserName } = useContext(UserContext);
 
     return restaurantList.length === 0 ? (
         <div>Loading...</div>
@@ -99,6 +102,16 @@ const Body = () => {
                 >
                     Reset
                 </button>
+                <div className="flex w-[250px] items-center justify-between rounded-md bg-gray-200 px-4 py-3 text-xl text-black">
+                    <input
+                        className="w-full border-none bg-gray-200 font-medium text-black outline-none"
+                        type="text"
+                        value={loggedInUser}
+                        onChange={(e) => setUserName(e.target.value)}
+                    />
+
+
+                </div>
             </div>
 
             <div className="restaurant-container mt-10 flex w-full flex-wrap justify-center gap-8 py-8">

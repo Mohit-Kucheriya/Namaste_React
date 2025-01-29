@@ -4,6 +4,7 @@ import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import { BODY_DATA_URL } from "../utils/constants";
+import useBody from "../utils/useBody";
 
 const Body = () => {
     // originalList for search or filters.

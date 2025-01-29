@@ -46,13 +46,13 @@ class UserClass extends React.Component {
         console.log(this.props.name + "Child Render");
 
         return (
-            <div className="user-card">
+            <div className="user-card border p-5">
                 <h1>{name}</h1>
                 <h2>{username}- {email}</h2>
                 <h3>{phone}</h3>
                 <p>{address.street}</p>
                 <p>{address.city}</p>
-                <p>{address.suite}</p>
+                
 
 
                 <button

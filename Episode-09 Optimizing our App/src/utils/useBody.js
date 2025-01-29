@@ -24,7 +24,7 @@ const useBody = () => {
             json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
         );
     }
-    return [restsurantList, filterRestaurant]
+    return {restsurantList, filterRestaurant}
 
 }
 
